@@ -101,11 +101,7 @@ static inline void addMinute()
     {
         min0 = 0;
         min1++;
-        if (min1 == 6)
-        {
-            min1 = 0;
-            addHour();
-        }
+        if (min1 == 6) min1 = 0;
     }
 }
 
@@ -193,6 +189,7 @@ ISR(TIMER0_COMPA_vect)
     {
         milliseconds = 0;
         addMinute();
+        if (min1 == 0 && min0 == 0) addHour();
         updateMatrixData();
         updateRegisterData();
     }
