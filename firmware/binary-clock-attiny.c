@@ -35,11 +35,15 @@ volatile uint8_t buttonMinutesWasPressed = 0;
 
 static inline void initPins()
 {
-    // clearing register
+    // clearing registers
     DDRB = 0;
+    PORTB = 0;
 
     // setting shift register pins as outputs, leaving button pins as inputs
     DDRB |= (1 << DATA_PIN) | (1 << LATCH_PIN) | (1 << CLK_PIN);
+
+    // enabling internal pull-up resistors for the button pins
+    PORTB |= (1 << BUTTON_HOURS_PIN) | (1 << BUTTON_MINUTES_PIN);
 }
 
 static inline void initTimer0()
