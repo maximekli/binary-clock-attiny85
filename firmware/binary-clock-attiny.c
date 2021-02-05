@@ -77,32 +77,32 @@ static inline void initTimer0Interrupt()
 
 static inline void addHour()
 {
-    // adding 1 hour, updating the rest if necessary
+    // adding 1 hour
 
-    h0++;
-    if (h0 == 10)
+    if (h0 == 9)
     {
         h0 = 0;
         h1++;
     }
-    else if (h1 == 2 && h0 == 4)
+    else if (h1 == 2 && h0 == 3)
     {
         h0 = 0;
         h1 = 0;
     }
+    else h0++;
 }
 
 static inline void addMinute()
 {
-    // adding 1 minute, updating the rest if necessary
+    // adding 1 minute
 
-    min0++;
-    if (min0 == 10)
+    if (min0 == 9)
     {
         min0 = 0;
-        min1++;
-        if (min1 == 6) min1 = 0;
+        if (min1 == 5) min1 = 0;
+        else min1++;
     }
+    else min0++;
 }
 
 static inline void updateMatrixData()
